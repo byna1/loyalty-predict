@@ -53,7 +53,7 @@ AS
         WHEN  daysSinceFirstTrans <= 7 THEN '01 - CURIOUS'
         WHEN  daysSinceLastTrans <= 7 AND (DaysSinceTheDayBeforeTheLast - daysSinceLastTrans) <= 14 THEN '02 - FAITHFUL'
         WHEN  daysSinceLastTrans BETWEEN 8 AND 14 THEN '03 - TOURIST'
-        WHEN  daysSinceLastTrans BETWEEN 15 AND 27 THEN '04 - DISENGAGED'   
+        WHEN  daysSinceLastTrans BETWEEN 15 AND 28 THEN '04 - DISENGAGED'   
         WHEN  daysSinceLastTrans > 28 THEN '05 - CHURN'   
         WHEN  daysSinceLastTrans <= 7 AND (DaysSinceTheDayBeforeTheLast - daysSinceLastTrans) BETWEEN 15 AND 27 THEN '02 - RECONQUERED'   
         WHEN  daysSinceLastTrans <= 7 AND (DaysSinceTheDayBeforeTheLast - daysSinceLastTrans) >= 28 THEN '02 - REBORN'
