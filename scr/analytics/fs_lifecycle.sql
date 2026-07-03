@@ -11,7 +11,7 @@ AS
     DescLifeCycle AS descLifeCycleAtual
       
 FROM life_cycle
-WHERE dtRef = date('2026-06-26','-1 day')),
+WHERE dtRef = date('{date}','-1 day')),
 
 tb_life_cycle_D28 AS
 
@@ -20,7 +20,7 @@ tb_life_cycle_D28 AS
     IdCliente, 
     DescLifeCycle AS descLifeCycleAtual_D28
 FROM life_cycle
-WHERE dtRef = date('2026-06-26','-29 day')),
+WHERE dtRef = date('{date}','-29 day')),
 
 tb_share_cycles
 
@@ -36,7 +36,7 @@ AS
        1.* SUM(CASE WHEN DescLifeCycle = '02 - REBORN' THEN 1 ELSE 0 END) / count (*) AS 'pct_REBORN',
        1.* SUM(CASE WHEN DescLifeCycle = '02 - RECONQUERED' THEN 1 ELSE 0 END) / count (*) AS 'pct_RECONQUERED'
 FROM life_cycle
-WHERE dtRef = date('2026-06-26','-1 day')
+WHERE dtRef = date('{date}','-1 day')
 GROUP BY IdCliente),
 
 tb_avg_cycle

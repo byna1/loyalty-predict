@@ -9,7 +9,7 @@ AS
     descSlugCurso,
     COUNT(idCursoEpisodioCompleto) AS completed_by_user
 FROM cursos_episodios_completos
-WHERE dtCriacao < '2026-06-26'
+WHERE dtCriacao < '{date}'
 GROUP BY idUsuario,descSlugCurso),
 
 tb_course_eps
@@ -89,7 +89,7 @@ AS
             MAX(dtCriacao) AS dtCreation
     
     FROM habilidades_usuarios
-    WHERE dtCriacao < '2026-06-26'
+    WHERE dtCriacao < '{date}'
     GROUP  BY idUsuario 
 
 UNION ALL 
@@ -98,7 +98,7 @@ UNION ALL
             idUsuario,
             MAX(dtCriacao) AS dtCreation
         FROM cursos_episodios_completos
-        WHERE dtCriacao < '2026-06-26'
+        WHERE dtCriacao < '{date}'
         GROUP BY idUsuario
 UNION ALL 
 
@@ -106,7 +106,7 @@ UNION ALL
             idUsuario,
             MAX(dtRecompensa) AS dtCreation
         FROM recompensas_usuarios
-        WHERE dtRecompensa < '2026-06-26'
+        WHERE dtRecompensa < '{date}'
         GROUP  BY idUsuario),
         
 tb_last_activity
@@ -115,7 +115,7 @@ AS
 
 (SELECT 
     idUsuario,
-    MIN(julianday('2026-06-26')) - (julianday(dtCreation)) AS qtd_days_last_activity
+    MIN(julianday('{date}')) - (julianday(dtCreation)) AS qtd_days_last_activity
 FROM tb_activity
 GROUP  BY idUsuario),
 
@@ -171,6 +171,6 @@ ON t1.idUsuario = t3.idUsuario
 
 )
 
-SELECT date('2026-06-26', '-1 day') AS dtRef,
+SELECT date('{date}', '-1 day') AS dtRef,
 *
 FROM tb_join
